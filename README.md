@@ -4,7 +4,7 @@ A React web application for searching books via the Google Books API and managin
 
 ## Live Demo
 
-> _Deployment link will be added here._
+**[library-wishlist-app.vercel.app](https://library-wishlist-app.vercel.app)**
 
 ## Features
 

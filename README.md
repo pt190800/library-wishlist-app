@@ -23,7 +23,7 @@ A React web application for searching books via the Google Books API and managin
 | Styling          | Tailwind CSS v4                 |
 | State Management | React Context API + useReducer  |
 | Persistence      | localStorage                    |
-| API              | Google Books API (public, no key required) |
+| API              | Google Books API (optional key via `VITE_GOOGLE_BOOKS_API_KEY`) |
 
 ## Architecture Decisions
 
@@ -34,7 +34,7 @@ The wish list state lives in a React Context (`WishListProvider`) so both the Se
 `useBookSearch` uses `useReducer` to manage the `loading` / `error` / `books` state as a single unit, avoiding cascading re-renders. An `AbortController` cancels in-flight requests when the query changes, preventing stale results from overwriting newer ones.
 
 ### Debounce — Separation of Concerns
-The `useDebounce` hook lives at the page level (`SearchPage`), not inside `SearchBar`. The search bar is a pure UI component (`value` + `onChange`), while the page orchestrates: raw input → debounced value → API call.
+The `useDebounce` hook lives at the page level (`SearchPage`), not inside `SearchBar`. The search bar is a pure UI component (`value` + `onChange`), while the page orchestrates: raw input → debounced value (600ms, min 2 chars) → API call.
 
 ### API Type Mapping
 A minimal `GoogleVolumeItem` type captures only the fields we use. A `mapVolumeToBook()` function transforms API responses into our internal `Book` type at the boundary, so the rest of the app never touches `volumeInfo` directly.
@@ -52,6 +52,12 @@ A minimal `GoogleVolumeItem` type captures only the fields we use. A `mapVolumeT
 git clone <repo-url>
 cd library-wishlist-app
 npm install
+```
+
+Create a `.env.local` file in the project root (optional but recommended to avoid rate limiting):
+
+```
+VITE_GOOGLE_BOOKS_API_KEY=your_google_books_api_key
 ```
 
 ### Development

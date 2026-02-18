@@ -11,7 +11,7 @@ import type { Book } from '../types/book';
 export function SearchPage() {
   const [query, setQuery] = useState('');
   const debouncedQuery = useDebounce(query);
-  const { books, loading, error } = useBookSearch(debouncedQuery);
+  const { books, loading, error } = useBookSearch(debouncedQuery.length >= 2 ? debouncedQuery : '');
   const { addBook, isInWishList } = useWishList();
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
 

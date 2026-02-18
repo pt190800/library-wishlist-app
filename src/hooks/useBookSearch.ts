@@ -3,6 +3,7 @@ import type { Book, GoogleBooksResponse } from '../types/book';
 import { mapVolumeToBook } from '../types/book';
 
 const API_URL = 'https://www.googleapis.com/books/v1/volumes';
+const API_KEY = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY as string | undefined;
 
 // ── State & Actions ──
 
@@ -56,7 +57,8 @@ export function useBookSearch(query: string): UseBookSearchResult {
     const controller = new AbortController();
     dispatch({ type: 'FETCH_START' });
 
-    fetch(`${API_URL}?q=${encodeURIComponent(trimmed)}&maxResults=20`, {
+    const keyParam = API_KEY ? `&key=${API_KEY}` : '';
+    fetch(`${API_URL}?q=${encodeURIComponent(trimmed)}&maxResults=20${keyParam}`, {
       signal: controller.signal,
     })
       .then((res) => {

@@ -54,11 +54,17 @@ cd library-wishlist-app
 npm install
 ```
 
-Create a `.env.local` file in the project root (optional but recommended to avoid rate limiting):
+### Environment Variables
+
+Create a `.env.local` file in the project root:
 
 ```
 VITE_GOOGLE_BOOKS_API_KEY=your_google_books_api_key
 ```
+
+Without this key the app falls back to unauthenticated requests, which are subject to strict rate limiting and may return `429` errors under normal usage. A free key can be obtained from the [Google Cloud Console](https://console.cloud.google.com/) by enabling the **Books API** under *APIs & Services*.
+
+> `.env.local` is listed in `.gitignore` and will never be committed to the repository.
 
 ### Development
 

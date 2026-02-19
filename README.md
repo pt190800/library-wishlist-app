@@ -49,7 +49,7 @@ A minimal `GoogleVolumeItem` type captures only the fields we use. A `mapVolumeT
 ### Installation
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/pt190800/library-wishlist-app
 cd library-wishlist-app
 npm install
 ```
@@ -97,7 +97,7 @@ src/
 ├── context/
 │   └── WishListContext.tsx     Wish list state + localStorage sync
 ├── hooks/
-│   ├── useDebounce.ts          Generic debounce hook (400ms default)
+│   ├── useDebounce.ts          Generic debounce hook (600ms default)
 │   └── useBookSearch.ts        Google Books API fetch with useReducer
 ├── types/
 │   └── book.ts                 Book type + API types + mapper function

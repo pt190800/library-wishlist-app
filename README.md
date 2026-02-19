@@ -74,6 +74,14 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
+### Running Tests
+
+```bash
+npm test
+```
+
+Runs all 13 unit and smoke tests using [Vitest](https://vitest.dev/) + React Testing Library. Use `npm run test:watch` for watch mode during development.
+
 ### Production Build
 
 ```bash
@@ -101,6 +109,11 @@ src/
 │   └── useBookSearch.ts        Google Books API fetch with useReducer
 ├── types/
 │   └── book.ts                 Book type + API types + mapper function
+├── test/
+│   ├── setup.ts                Vitest + jest-dom global setup
+│   ├── useDebounce.test.ts     Unit tests for debounce hook
+│   ├── WishListContext.test.tsx Unit tests for wish list state & localStorage
+│   └── SearchPage.test.tsx     Smoke tests for search page render
 ├── App.tsx                     Router + Provider + layout
 ├── main.tsx                    Entry point
 └── index.css                   Tailwind CSS import
